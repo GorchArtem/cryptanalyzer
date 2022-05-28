@@ -3,31 +3,31 @@ package analyzer.crypto;
 import java.util.Scanner;
 
 public class MainApp {
-    public static final String alphabet = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ абвгдеёжзийклмнопрстуфхцчшщъыьэюя . , ”” : - ! ?" + " ";
+    public static final String alphabet = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ абвгдеёжзийклмнопрстуфхцчшщъыьэюя.,””:-!?";
 
     public static void main(String[] args) {
 
-        System.out.println("Выберите режим работы программы: \n Введите 1, если хотите зашифровать текст \n Введите 2, если хотите расшифровать текст");
+//        System.out.println("Выберите режим работы программы: \n Введите 1, если хотите зашифровать текст \n Введите 2, если хотите расшифровать текст");
+//
+//        Scanner scanner = new Scanner(System.in);
+//        int inSc = scanner.nextInt();
+//        if (inSc == 1) {
+//
+//        }
 
-        Scanner scanner = new Scanner(System.in);
-        int inSc = scanner.nextInt();
-        if (inSc == 1) {
+        int offset = 100; //TODO: Добавить считывание офсета
 
-        }
-
-        int offset = 1; //TODO: Добавить считывание офсета
-
-        String result = cypherText("Сколько б я не искал Золотого святого, всюду грубый оскал - всюду черное слово.", offset);
+        String result = toCypherText("Сколько б я не искал Золотого святого, всюду грубый оскал - всюду черное слово.", offset);
 
         System.out.println(result);
 
-        result  = cypherText(result, offset * -1);
+        result  = toCypherText(result, offset * -1);
 
         System.out.println(result);
 
     }
 
-    public static String cypherText(String sourceText, int offset)
+    public static String toCypherText(String sourceText, int offset)
     {
         String resText = "";
 
@@ -41,20 +41,33 @@ public class MainApp {
 
     private static char cypherSymbol(char symbol, int offset)
     {
-        int alphavitLength = alphabet.length();
-
         int index = alphabet.indexOf(symbol);
 
         int targetPosition = index + offset;
 
-        if (targetPosition > alphavitLength)
+        if (targetPosition < 0) //Расшифровка
         {
-            targetPosition = targetPosition % alphavitLength;
+            targetPosition = alphabet.length() - getPureIndex(Math.abs(targetPosition));
+        }
+        else //Зашифровка
+        {
+            targetPosition = getPureIndex(Math.abs(targetPosition));
         }
 
         return alphabet.charAt(targetPosition);
     }
 
+    //определяем индекс, если сдвиг символа происходит дальше длины алфавита
+    private static int getPureIndex(int targetPosition)
+    {
+        int alphabetLength = alphabet.length();
 
+        if (targetPosition > alphabetLength)//TODO: надо придумать, как обрабатывать ситуацию, если в таргетПозишн попадет отрицательное число
+        {
+            targetPosition = targetPosition % alphabetLength;
+        }
+
+        return targetPosition;
+    }
 }
 

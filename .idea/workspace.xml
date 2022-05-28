@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62c7c98f-0bc6-43bb-afc3-4a4cc2c0e203" name="Changes" comment="added MainApp" />
+    <list default="true" id="62c7c98f-0bc6-43bb-afc3-4a4cc2c0e203" name="Changes" comment="первая версия криптоанализатора">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/analyzer/crypto/MainApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/analyzer/crypto/MainApp.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -91,7 +94,21 @@
       <option name="project" value="LOCAL" />
       <updated>1653671417957</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="первая версия криптоанализатора">
+      <created>1653671611381</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1653671611381</updated>
+    </task>
+    <task id="LOCAL-00003" summary="первая версия криптоанализатора">
+      <created>1653671683972</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1653671683972</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -107,6 +124,18 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added MainApp" />
-    <option name="LAST_COMMIT_MESSAGE" value="added MainApp" />
+    <MESSAGE value="первая версия криптоанализатора" />
+    <option name="LAST_COMMIT_MESSAGE" value="первая версия криптоанализатора" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/analyzer/crypto/MainApp.java</url>
+          <line>23</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
