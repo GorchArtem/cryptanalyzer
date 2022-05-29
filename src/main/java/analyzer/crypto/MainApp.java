@@ -1,9 +1,7 @@
 package analyzer.crypto;
 
-import java.util.Scanner;
-
 public class MainApp {
-    public static final String alphabet = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ абвгдеёжзийклмнопрстуфхцчшщъыьэюя.,””:-!?";
+    public static final String ALPHABET = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ абвгдеёжзийклмнопрстуфхцчшщъыьэюя.,”:-!?";
 
     public static void main(String[] args) {
 
@@ -15,7 +13,7 @@ public class MainApp {
 //
 //        }
 
-        int offset = 100; //TODO: Добавить считывание офсета
+        int offset = -1; //TODO: Добавить считывание офсета
 
         String result = toCypherText("Сколько б я не искал Золотого святого, всюду грубый оскал - всюду черное слово.", offset);
 
@@ -41,26 +39,26 @@ public class MainApp {
 
     private static char cypherSymbol(char symbol, int offset)
     {
-        int index = alphabet.indexOf(symbol);
+        int index = ALPHABET.indexOf(symbol);
 
         int targetPosition = index + offset;
 
         if (targetPosition < 0) //Расшифровка
         {
-            targetPosition = alphabet.length() - getPureIndex(Math.abs(targetPosition));
+            targetPosition = ALPHABET.length() - getPureIndex(Math.abs(targetPosition));
         }
         else //Зашифровка
         {
             targetPosition = getPureIndex(Math.abs(targetPosition));
         }
 
-        return alphabet.charAt(targetPosition);
+        return ALPHABET.charAt(targetPosition);
     }
 
     //определяем индекс, если сдвиг символа происходит дальше длины алфавита
     private static int getPureIndex(int targetPosition)
     {
-        int alphabetLength = alphabet.length();
+        int alphabetLength = ALPHABET.length();
 
         if (targetPosition > alphabetLength)//TODO: надо придумать, как обрабатывать ситуацию, если в таргетПозишн попадет отрицательное число
         {
