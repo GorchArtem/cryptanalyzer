@@ -14,15 +14,17 @@ public class MainApp {
         int inSc = scanner.nextInt();
         if (inSc == 1) {
 
-            System.out.println("Добавьте путь к файлу, который нужно зашифровать");
+            System.out.println("Добавьте путь к файлу, который нужно зашифровать:");
             Scanner scannerPathFrom = new Scanner(System.in);
             String pathFrom = scannerPathFrom.nextLine();
 
-            System.out.println("Добавьте путь к файлу, в котором будет хранится шифр");
+            System.out.println("Добавьте путь к файлу, в котором будет хранится шифр:");
             Scanner scannerPathOut = new Scanner(System.in);
             String pathOut = scannerPathOut.nextLine();
 
-
+            System.out.println("Введите ключ для шифрования в виде целого числа:");
+            Scanner scKey = new Scanner(System.in);
+            int key = scKey.nextInt();
         }
 
         int offset = -1; //TODO: Добавить считывание офсета
