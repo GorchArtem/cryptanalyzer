@@ -1,17 +1,26 @@
 package analyzer.crypto;
 
+import java.util.Scanner;
+
 public class MainApp {
     public static final String ALPHABET = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ абвгдеёжзийклмнопрстуфхцчшщъыьэюя.,”:-!?";
 
     public static void main(String[] args) {
 
-//        System.out.println("Выберите режим работы программы: \n Введите 1, если хотите зашифровать текст \n Введите 2, если хотите расшифровать текст");
-//
-//        Scanner scanner = new Scanner(System.in);
-//        int inSc = scanner.nextInt();
-//        if (inSc == 1) {
-//
-//        }
+        System.out.println(
+                "Выберите режим работы программы: \n Введите 1, если хотите зашифровать текст. \n Введите 2, если хотите расшифровать текст.");
+
+        Scanner scanner = new Scanner(System.in);
+        int inSc = scanner.nextInt();
+        if (inSc == 1) {
+            //Вставляем из консоли путь до файла, в котором находится нужный для шифрования текст
+            System.out.println("Добавьте путь к файлу, который нужно зашифровать");
+            Scanner scannerPathFrom = new Scanner(System.in);
+            String pathFrom = scannerPathFrom.nextLine();
+            scannerPathFrom.close();
+
+            //
+        }
 
         int offset = -1; //TODO: Добавить считывание офсета
 
