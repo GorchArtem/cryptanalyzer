@@ -13,13 +13,16 @@ public class MainApp {
         Scanner scanner = new Scanner(System.in);
         int inSc = scanner.nextInt();
         if (inSc == 1) {
-            //Вставляем из консоли путь до файла, в котором находится нужный для шифрования текст
+
             System.out.println("Добавьте путь к файлу, который нужно зашифровать");
             Scanner scannerPathFrom = new Scanner(System.in);
             String pathFrom = scannerPathFrom.nextLine();
-            scannerPathFrom.close();
 
-            //
+            System.out.println("Добавьте путь к файлу, в котором будет хранится шифр");
+            Scanner scannerPathOut = new Scanner(System.in);
+            String pathOut = scannerPathOut.nextLine();
+
+
         }
 
         int offset = -1; //TODO: Добавить считывание офсета
@@ -69,7 +72,7 @@ public class MainApp {
     {
         int alphabetLength = ALPHABET.length();
 
-        if (targetPosition > alphabetLength)//TODO: надо придумать, как обрабатывать ситуацию, если в таргетПозишн попадет отрицательное число
+        if (targetPosition > alphabetLength)
         {
             targetPosition = targetPosition % alphabetLength;
         }
