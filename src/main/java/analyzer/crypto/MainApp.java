@@ -1,5 +1,9 @@
 package analyzer.crypto;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class MainApp {
@@ -25,6 +29,17 @@ public class MainApp {
             System.out.println("Введите ключ для шифрования в виде целого числа:");
             Scanner scKey = new Scanner(System.in);
             int key = scKey.nextInt();
+
+            File fileInput = new File(pathFrom);
+            try(FileReader fileReader = new FileReader(fileInput)) {
+                char[] buffer = new char[(int) fileInput.length()];
+                fileReader.read(buffer);
+
+                String contentFromFile = new String(buffer);
+                System.out.println(contentFromFile);
+            }catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
 
         int offset = -1; //TODO: Добавить считывание офсета
@@ -33,7 +48,7 @@ public class MainApp {
 
         System.out.println(result);
 
-        result  = toCypherText(result, offset * -1);
+        result = toCypherText(result, offset * -1);
 
         System.out.println(result);
 
