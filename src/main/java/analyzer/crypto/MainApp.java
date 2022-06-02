@@ -36,7 +36,7 @@ public class MainApp {
                 fileReader.read(buffer);
 
                 String contentFromFile = new String(buffer);
-                System.out.println(contentFromFile);
+                System.out.println(contentFromFile.trim());
             }catch (IOException e) {
                 throw new RuntimeException(e);
             }
