@@ -87,14 +87,6 @@ public class MainApp {
             }
         }
 
-//        String result = toCypherText("Сколько б я не искал Золотого святого, всюду грубый оскал - всюду черное слово.", offset);
-//
-//        System.out.println(result);
-//
-//        result = toCypherText(result, offset * -1);
-//
-//        System.out.println(result);
-
     }
 
     public static String toCypherText(String sourceText, int offset)
