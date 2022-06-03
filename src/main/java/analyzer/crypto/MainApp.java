@@ -1,9 +1,6 @@
 package analyzer.crypto;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.Scanner;
 
 public class MainApp {
@@ -16,6 +13,7 @@ public class MainApp {
 
         Scanner scanner = new Scanner(System.in);
         int inSc = scanner.nextInt();
+        //Шифруем текст из файла
         if (inSc == 1) {
 
             System.out.println("Добавьте путь к файлу, который нужно зашифровать:");
@@ -30,14 +28,27 @@ public class MainApp {
             Scanner scKey = new Scanner(System.in);
             int key = scKey.nextInt();
 
+            //Делаем чтение из файла и сохраняем в стрингу contentFromFile
+            String contentFromFile;
             File fileInput = new File(pathFrom);
             try(FileReader fileReader = new FileReader(fileInput)) {
                 char[] buffer = new char[(int) fileInput.length()];
                 fileReader.read(buffer);
 
-                String contentFromFile = new String(buffer);
-                System.out.println(contentFromFile.trim());
+                contentFromFile = new String(buffer).trim();
+//                System.out.println(contentFromFile);
             }catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+            String cypherText = toCypherText(contentFromFile, key);
+
+            try(FileWriter fileWriter = new FileWriter(pathOut)) {
+                char[] buffer = new char[cypherText.length()];
+                buffer = cypherText.toCharArray();
+
+                fileWriter.write(buffer);
+            } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }
