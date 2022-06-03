@@ -29,28 +29,15 @@ public class MainApp {
             int key = scKey.nextInt();
 
             //Делаем чтение из файла и сохраняем в стрингу contentFromFile
-            String contentFromFile;
-            File fileInput = new File(pathFrom);
-            try(FileReader fileReader = new FileReader(fileInput)) {
-                char[] buffer = new char[(int) fileInput.length()];
-                fileReader.read(buffer);
+            String contentFromFile = readFile(pathFrom);
 
-                contentFromFile = new String(buffer).trim();
-
-            }catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-
+            //шифруем текст из стринги contentFromFile
             String cypherText = toCypherText(contentFromFile, key);
 
-            try(FileWriter fileWriter = new FileWriter(pathOut)) {
-                char[] buffer = cypherText.toCharArray();
-
-                fileWriter.write(buffer);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        } else if (inSc == 2) {
+            //записываем зашифрованный текст в другой файл
+            writeToFile(cypherText, pathOut);
+        }
+        else if (inSc == 2) {
             System.out.println("Добавьте путь к файлу, в котором хранится шифр:");
             Scanner scannerPathFrom = new Scanner(System.in);
             String pathFrom = scannerPathFrom.nextLine();
@@ -64,27 +51,11 @@ public class MainApp {
             int key = scKey.nextInt();
 
             //Делаем чтение из файла и сохраняем в стрингу contentFromFile
-            String contentFromFile;
-            File fileInput = new File(pathFrom);
-            try(FileReader fileReader = new FileReader(fileInput)) {
-                char[] buffer = new char[(int) fileInput.length()];
-                fileReader.read(buffer);
-
-                contentFromFile = new String(buffer).trim();
-
-            }catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+            String contentFromFile = readFile(pathFrom);
 
             String cypherText = toCypherText(contentFromFile, key * (-1));
 
-            try(FileWriter fileWriter = new FileWriter(pathOut)) {
-                char[] buffer = cypherText.toCharArray();
-
-                fileWriter.write(buffer);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+            writeToFile(cypherText, pathOut);
         }
 
     }
@@ -130,6 +101,30 @@ public class MainApp {
         }
 
         return targetPosition;
+    }
+
+
+    private  static String readFile(String path) { //Делает чтение из файла и возвращает в стринге
+        File fileInput = new File(path);
+        try(FileReader fileReader = new FileReader(fileInput)) {
+            char[] buffer = new char[(int) fileInput.length()];
+            fileReader.read(buffer);
+
+            return new String(buffer).trim();
+
+        }catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private static void writeToFile(String text, String path) { //записывает текст в файл
+        try(FileWriter fileWriter = new FileWriter(path)) {
+            char[] buffer = text.toCharArray();
+
+            fileWriter.write(buffer);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
 
