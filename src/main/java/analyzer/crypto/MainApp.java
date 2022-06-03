@@ -36,7 +36,7 @@ public class MainApp {
                 fileReader.read(buffer);
 
                 contentFromFile = new String(buffer).trim();
-//                System.out.println(contentFromFile);
+
             }catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -50,17 +50,50 @@ public class MainApp {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+        } else if (inSc == 2) {
+            System.out.println("Добавьте путь к файлу, в котором хранится шифр:");
+            Scanner scannerPathFrom = new Scanner(System.in);
+            String pathFrom = scannerPathFrom.nextLine();
+
+            System.out.println("Добавьте путь к файлу, в который нужно сохранить расшифрованный текст:");
+            Scanner scannerPathOut = new Scanner(System.in);
+            String pathOut = scannerPathOut.nextLine();
+
+            System.out.println("Введите ключ в виде целого числа для дешифрования:");
+            Scanner scKey = new Scanner(System.in);
+            int key = scKey.nextInt();
+
+            //Делаем чтение из файла и сохраняем в стрингу contentFromFile
+            String contentFromFile;
+            File fileInput = new File(pathFrom);
+            try(FileReader fileReader = new FileReader(fileInput)) {
+                char[] buffer = new char[(int) fileInput.length()];
+                fileReader.read(buffer);
+
+                contentFromFile = new String(buffer).trim();
+
+            }catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+            String cypherText = toCypherText(contentFromFile, key * (-1));
+
+            try(FileWriter fileWriter = new FileWriter(pathOut)) {
+                char[] buffer = cypherText.toCharArray();
+
+                fileWriter.write(buffer);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
 
-        int offset = -1; //TODO: Добавить считывание офсета
-
-        String result = toCypherText("Сколько б я не искал Золотого святого, всюду грубый оскал - всюду черное слово.", offset);
-
-        System.out.println(result);
-
-        result = toCypherText(result, offset * -1);
-
-        System.out.println(result);
+//        String result = toCypherText("Сколько б я не искал Золотого святого, всюду грубый оскал - всюду черное слово.", offset);
+//
+//        System.out.println(result);
+//
+//        result = toCypherText(result, offset * -1);
+//
+//        System.out.println(result);
 
     }
 
