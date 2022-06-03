@@ -44,8 +44,7 @@ public class MainApp {
             String cypherText = toCypherText(contentFromFile, key);
 
             try(FileWriter fileWriter = new FileWriter(pathOut)) {
-                char[] buffer = new char[cypherText.length()];
-                buffer = cypherText.toCharArray();
+                char[] buffer = cypherText.toCharArray();
 
                 fileWriter.write(buffer);
             } catch (IOException e) {
