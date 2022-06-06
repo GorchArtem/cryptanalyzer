@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.Scanner;
 
 public class MainApp {
-    public static final String ALPHABET = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ абвгдеёжзийклмнопрстуфхцчшщъыьэюя.,”:-!?";
+    private static final String ALPHABET = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ абвгдеёжзийклмнопрстуфхцчшщъыьэюя.,”:-!?";
 
     public static void main(String[] args) {
 
@@ -53,7 +53,7 @@ public class MainApp {
             //Делаем чтение из файла и сохраняем в стрингу contentFromFile
             String contentFromFile = readFile(pathFrom);
 
-            String cypherText = toCypherText(contentFromFile, key * (-1));
+            String cypherText = toCypherText(contentFromFile, key * (-1));//Делаем дешифровку текста, умножая ключ на отрицательную единицу для обратного сдвига символов
 
             writeToFile(cypherText, pathOut);
         }
@@ -126,5 +126,73 @@ public class MainApp {
             throw new RuntimeException(e);
         }
     }
+
+    private static String decipherBruteForce(String cypherText) {
+        int key = 0;
+
+        while (true) {
+            String resultText = toCypherText(cypherText, key * (-1));
+
+            if (resultText.indexOf("Ъ") == 0 || resultText.indexOf("Ь") == 0 || resultText.indexOf("Ы") == 0    //Проверяем, что текст не начинается на перечисленные символы
+            || resultText.indexOf("ъ") == 0 || resultText.indexOf("ь") == 0 || resultText.indexOf("ы") == 0 ) {
+                key++;
+                continue;
+            }
+//            if ()
+        }
+
+
+
+
+//        return null;
+    }
+
+    private static boolean searchFictionCharsCombinationsInText(String text) {
+        boolean check = false;
+        for (int i = 0; i < fictionCombination.length; i++) {
+            if (text.contains(fictionCombination[i])) {
+                check = true;
+            }
+        }
+        return check;
+    }
+
+
+    private static String[] fictionCombination = {"аъ", "аы", "аь",
+            "бй",
+            "вй", "вэ",
+            "гй", "гф", "гх", "гъ", "гь", "гэ",
+            "дй",
+            "еъ", "еы", "еь", "еэ",
+            "ёъ", "еы", "еь", "ёэ", "ёа", "ёе", "ёё", "ёи", "ёу", "ёф", "ёя",
+            "жй", "жф", "жх", "жш", "жщ",
+            "зй", "зп", "зщ",
+            "иъ", "иы", "иь",
+            "йё", "йж", "йй", "йъ", "йы", "йь", "йэ",
+            "кй", "кщ", "къ", "кь",
+            "лй", "лъ", "лэ",
+            "мй", "мъ",
+            "нй",
+            "оъ", "оы", "оь",
+            "пв", "пг", "пж", "пз", "пй", "пъ",
+            "ръ",
+            "сй",
+            "тй",
+            "уъ", "уы", "уь",
+            "фб", "фж", "фз", "фй", "фп", "фх", "фц", "фъ", "фэ",
+            "хё", "хж", "хй", "хш", "хы", "хь", "хю", "хя",
+            "цб", "цё", "цж", "цй", "цф", "цх", "цч", "цщ", "цъ", "ць", "цэ", "цю", "ця",
+            "чб", "чг", "чз", "чй", "чп", "чф", "чщ", "чъ", "чы", "чэ", "чю",
+            "шд", "шж", "шз", "шй", "шш", "шщ", "шъ", "шы", "шэ",
+            "щб", "щг", "щд", "щж", "щз", "щй", "щл", "щп", "щп", "щф", "щх", "щц", "щч", "щш", "щщ", "щъ", "щы", "щь", "щэ",
+            "ъа", "ъб", "ъв", "ъг", "ъд", "ъж", "ъз", "ъи", "ъй", "ък", "ъл", "ъм", "ън", "ъп", "ър", "ъс", "ът", "ъу", "ъф", "ъх", "ъц", "ъч", "ъш", "ъщ", "ъъ", "ъы", "ъи", "ъэ", "ъ", "ъ", "ъ",
+            "ыа", "ыё", "ыо", "ыф", "ыъ", "ыы", "ыь", "ыэ",
+            "ьа", "ьй", "ьл", "ьу", "ьь", "ьы", "ьъ",
+            "эа", "эе", "эё", "эц", "эч", "эъ", "эы", "эь", "ээ", "эю",
+            "юу", "юь", "юы", "юъ",
+            "яа", "яё", "яо", "яъ", "яы", "яь", "яэ",
+    };
+
+
 }
 
