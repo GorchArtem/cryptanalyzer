@@ -36,6 +36,8 @@ public class MainApp {
 
             //записываем зашифрованный текст в другой файл
             writeToFile(cypherText, pathOut);
+
+            System.out.println(decipherBruteForce(cypherText));
         }
         else if (inSc == 2) {
             System.out.println("Добавьте путь к файлу, в котором хранится шифр:");
@@ -56,6 +58,8 @@ public class MainApp {
             String cypherText = toCypherText(contentFromFile, key * (-1));//Делаем дешифровку текста, умножая ключ на отрицательную единицу для обратного сдвига символов
 
             writeToFile(cypherText, pathOut);
+
+            System.out.println(decipherBruteForce(contentFromFile));
         }
 
     }
@@ -129,7 +133,7 @@ public class MainApp {
 
     private static String decipherBruteForce(String cypherText) {
         int key = 0;
-
+        String returnText;
         while (true) {
             String resultText = toCypherText(cypherText, key * (-1));
 
@@ -138,13 +142,14 @@ public class MainApp {
                 key++;
                 continue;
             }
-//            if ()
+            if (searchFictionCharsCombinationsInText(resultText) == true) {
+                key++;
+            } else {
+                returnText = resultText;
+                break;
+            }
         }
-
-
-
-
-//        return null;
+        return returnText;
     }
 
     private static boolean searchFictionCharsCombinationsInText(String text) {
