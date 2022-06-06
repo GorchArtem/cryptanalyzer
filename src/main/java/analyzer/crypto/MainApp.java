@@ -9,7 +9,8 @@ public class MainApp {
     public static void main(String[] args) {
 
         System.out.println(
-                "Выберите режим работы программы: \n Введите 1, если хотите зашифровать текст. \n Введите 2, если хотите расшифровать текст.");
+                "Выберите режим работы программы: \n Введите 1, если хотите зашифровать текст."+
+                        "\n Введите 2, если хотите расшифровать текст. \n Введите 3, если хотите расшифровать текст методом bruteForce.");
 
         Scanner scanner = new Scanner(System.in);
         int inSc = scanner.nextInt();
@@ -58,8 +59,24 @@ public class MainApp {
             String cypherText = toCypherText(contentFromFile, key * (-1));//Делаем дешифровку текста, умножая ключ на отрицательную единицу для обратного сдвига символов
 
             writeToFile(cypherText, pathOut);
+        }
+        else if (inSc == 3) {
+            System.out.println("Добавьте путь к файлу, в котором хранится шифр:");
+            Scanner scannerPathFrom = new Scanner(System.in);
+            String pathFrom = scannerPathFrom.nextLine();
 
-            System.out.println(decipherBruteForce(contentFromFile));
+            System.out.println("Добавьте путь к файлу, в который нужно сохранить расшифрованный текст:");
+            Scanner scannerPathOut = new Scanner(System.in);
+            String pathOut = scannerPathOut.nextLine();
+
+            //Делаем чтение из файла и сохраняем в стрингу contentFromFile
+            String contentFromFile = readFile(pathFrom);
+
+            //Дешифруем текст
+            String decipherText = decipherBruteForce(contentFromFile);
+
+            //Сохраняем дешифрованный текст в файл
+            writeToFile(decipherText, pathOut);
         }
 
     }
