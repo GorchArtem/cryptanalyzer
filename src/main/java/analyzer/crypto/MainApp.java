@@ -159,7 +159,7 @@ public class MainApp {
                 key++;
                 continue;
             }
-            if (searchFictionCharsCombinationsInText(resultText) == true) {
+            if (searchFictionCharsCombinationsInText(resultText) == true) { //проверяем, что в тексте нет фиктивных комбинаций символов
                 key++;
             } else {
                 returnText = resultText;
